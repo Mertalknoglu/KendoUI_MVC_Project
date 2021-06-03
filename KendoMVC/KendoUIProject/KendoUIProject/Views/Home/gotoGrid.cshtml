@@ -1,0 +1,85 @@
+﻿@model List<KendoUIProject.Models.MenuModel>
+
+
+@{
+    ViewBag.Title = "grid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="http://kendo.cdn.telerik.com/2017.1.223/js/cultures/kendo.culture.tr-TR.min.js"></script>
+
+<script type="text/javascript">
+    kendo.culture("tr-TR");
+</script>
+@{
+    KendoUIProject.Models.MenuModel menuClicked = null;
+    foreach (var item in Model)
+    {
+        menuClicked = item;
+    }
+}
+<h3>
+    @{
+        if (menuClicked != null)
+        {
+            @menuClicked.title;
+        }
+
+    }
+</h3>
+
+@{
+    string drm = "0";
+
+    if (menuClicked != null)
+    {
+        drm = menuClicked.link.ToString();
+    }
+}
+@(Html.Kendo().Grid<KendoUIProject.task>()
+    .Name("Grid")
+    .Columns(columns =>
+    {
+        columns.LoadSettings((IEnumerable<GridColumnSettings>)ViewData["Columns"]);
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .ToolBar(t => t.Search())
+    .Editable(editable => editable.Mode(GridEditMode.InLine).ConfirmDelete("Bu kaydı silmeye devam etmek istiyor musunuz?").DisplayDeleteConfirmation("Bu kaydı silmeye devam etmek istiyor musunuz?"))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .Filterable(ftb => ftb.Mode(GridFilterMode.Row))
+    .HtmlAttributes(new { style = "height:550px;" })
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .PageSize(20)
+    .Events(events => events.Error("error_handler"))
+    .Model(model => { model.Id(p => p.id); model.Field(p => p.bildirimtarih).Editable(true); })
+    .Create(update => update.Action("Create", "Grid", new { drm = @drm }))
+    .Read(read => read.Action("Read", "Grid",new { drm = @drm }))
+    .Update(update => update.Action("Update", "Grid", new { drm = @drm }))
+    .Destroy(update => update.Action("Destroy", "Grid", new { drm = @drm }))
+
+    )
+
+
+
+    )
+
+
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - My Telerik MVC Application</title>
+
+    <link href="~/Content/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/kendo.all.min.js"></script>
+    <script src="~/Scripts/kendo.aspnetmvc.min.js"></script>
+
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
+    <!-- menu için-->
+    <link href="~/Content/menu.css" rel="stylesheet" />
+    <script src="~/Scripts/dist/fontawesome.js"></script>
+    <script src="~/Scripts/dist/solid.js"></script>
+    <!-- menu için-->
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
+                <strong>BS</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                @Html.Action("getMenuList", "Home")
+            </ul>
+
+
+        </nav>
+
+        <div id="content" class="container-fluid">
+            @RenderBody()
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+</html>

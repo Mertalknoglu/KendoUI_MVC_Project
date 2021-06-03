@@ -1,0 +1,50 @@
+﻿@helper  ShowTree(List<KendoUIProject.Models.MenuModel> menu, int? parentid = 0, int level = 0)
+{
+    var items = menu.Where(s => s.parentid == parentid).ToList();
+    if (items.Any())
+    {
+        foreach (var item in items)
+        {
+            if ((menu.Where(s => s.parentid == item.id).ToList()).Count() == 0)
+            {
+                <li>
+
+                    @if (item.id == 1)
+                    {
+
+                        <a href="~/Home">
+                            <i class="fas fa-briefcase"></i>
+                            @item.title
+                        </a>
+                    }
+                    else
+                    {@Html.ActionLink(@item.title, "gotoGrid", "Home", new { id = item.link }, null)}
+
+
+
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="#submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-briefcase"></i>
+                        @item.title
+                    </a>
+
+                    <ul class="collapse list-unstyled" id="submenu">
+                        @ShowTree(menu, item.id)
+                    </ul>
+                </li>
+            }
+
+        }
+
+    }
+
+}
+
+@{
+    @model List<KendoUIProject.Models.MenuModel>
+    @ShowTree(Model, 0);
+}

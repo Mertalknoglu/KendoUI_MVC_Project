@@ -1,0 +1,30 @@
+﻿
+@*@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@helper  ShowTree(List<KendoUIProject.Models.MenuModel> menu, int? parentid = 0)
+{
+    var items = menu.Where(m => m.parentid == parentid);
+
+    if (items.Any())
+    {
+
+        <ul>
+            @foreach (var item in items)
+            {
+                <li>
+                    @item.title
+                </li>
+                @ShowTree(menu, item.id);
+            }
+        </ul>
+    }
+}
+
+@{
+    var menuList = ViewBag.menusList as List<KendoUIProject.Models.MenuModel>;
+    @ShowTree(menuList);
+}*@

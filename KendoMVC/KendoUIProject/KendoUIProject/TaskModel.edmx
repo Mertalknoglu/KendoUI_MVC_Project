@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaskProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="menus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentid" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="link" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="talepno" Type="varchar" MaxLength="50" />
+          <Property Name="isadi" Type="varchar" MaxLength="500" />
+          <Property Name="bildirimtarih" Type="datetime" />
+          <Property Name="cozumtarih" Type="datetime" />
+          <Property Name="issahibi" Type="varchar" MaxLength="50" />
+          <Property Name="durum" Type="tinyint" />
+        </EntityType>
+        <EntityContainer Name="TaskProjectModelStoreContainer">
+          <EntitySet Name="menus" EntityType="Self.menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="task" EntityType="Self.task" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="menus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TaskProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="menus" EntityType="Self.menus" />
+          <EntitySet Name="task" EntityType="TaskProjectModel.task" />
+        </EntityContainer>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="talepno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isadi" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="bildirimtarih" Type="DateTime" Precision="3" />
+          <Property Name="cozumtarih" Type="DateTime" Precision="3" />
+          <Property Name="issahibi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="durum" Type="Byte" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaskProjectModelStoreContainer" CdmEntityContainer="TaskProjectEntities">
+          <EntitySetMapping Name="menus">
+            <EntityTypeMapping TypeName="TaskProjectModel.menus">
+              <MappingFragment StoreEntitySet="menus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="task">
+            <EntityTypeMapping TypeName="TaskProjectModel.task">
+              <MappingFragment StoreEntitySet="task">
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="issahibi" ColumnName="issahibi" />
+                <ScalarProperty Name="cozumtarih" ColumnName="cozumtarih" />
+                <ScalarProperty Name="bildirimtarih" ColumnName="bildirimtarih" />
+                <ScalarProperty Name="isadi" ColumnName="isadi" />
+                <ScalarProperty Name="talepno" ColumnName="talepno" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

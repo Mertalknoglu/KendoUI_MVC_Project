@@ -1,0 +1,49 @@
+﻿@model KendoUIProject.Models.sumofTask
+@{ ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ana Sayfa</h2>
+<link href="~/Content/dashboard.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> @Model.acilislerCount.ToString() Adet</h3>
+                    <p> Acil İşler </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa" aria-hidden="true"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="card-box bg-orange">
+                <div class="inner">
+                    <h3> @Model.bekleyenCount.ToString() Adet</h3>
+                    <p> Bekleyen işler </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa" aria-hidden="true"></i>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card-box bg-green">
+                <div class="inner">
+                    <h3> @Model.completedCount.ToString() Adet</h3>
+                    <p> Tamamlanan İşler </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-task" aria-hidden="true"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
