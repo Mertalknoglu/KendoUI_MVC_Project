@@ -26,13 +26,17 @@
             }
             else
             {
+
+            
+                
+                
                 <li>
-                    <a href="#submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#submenu@(item.id)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-briefcase"></i>
                         @item.title
                     </a>
 
-                    <ul class="collapse list-unstyled" id="submenu">
+                    <ul class="collapse list-unstyled" id="submenu@(item.id)" >
                         @ShowTree(menu, item.id)
                     </ul>
                 </li>
